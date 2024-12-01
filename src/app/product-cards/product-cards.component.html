@@ -1,0 +1,25 @@
+<div class="card-container">
+    <mat-card *ngFor="let product of paginatedProducts" class="product-card">
+      <mat-card-header>
+        <div mat-card-avatar>
+          <img [src]="product.image" alt="{{ product.title }}" class="product-image">
+        </div>
+        <mat-card-title>{{ product.title }}</mat-card-title>
+        <mat-card-subtitle>ID: {{ product.id }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-actions>
+        <button mat-icon-button (click)="viewDetails(product)" matTooltip="Ver detalles">
+          <mat-icon>visibility</mat-icon>
+        </button>
+        <button mat-icon-button (click)="editProduct(product)" matTooltip="Editar producto">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button (click)="deleteProduct(product)" matTooltip="Eliminar producto">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  <mat-paginator [length]="products.length" [pageSize]="5" (page)="onPageChange($event)">
+  </mat-paginator>
+  

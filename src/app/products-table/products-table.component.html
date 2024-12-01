@@ -1,0 +1,37 @@
+<mat-table [dataSource]="products" matSort matPaginator>
+  <ng-container matColumnDef="id">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+    <mat-cell *matCellDef="let product"> {{ product.id }} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </mat-header-cell>
+    <mat-cell *matCellDef="let product"> {{ product.title }} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="image">
+    <mat-header-cell *matHeaderCellDef> Imagen </mat-header-cell>
+    <mat-cell *matCellDef="let product">
+      <img [src]="product.image" alt="{{ product.title }}" width="50">
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="actions">
+    <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
+    <mat-cell *matCellDef="let product">
+      <button mat-icon-button matTooltip="Ver detalles" (click)="viewDetails(product)">
+        <mat-icon>visibility</mat-icon>
+      </button>
+      <button mat-icon-button matTooltip="Editar producto" (click)="editProduct(product)">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button matTooltip="Eliminar producto" (click)="deleteProduct(product)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
+<mat-paginator [pageSize]="5"></mat-paginator>
